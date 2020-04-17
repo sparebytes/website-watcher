@@ -1,0 +1,27 @@
+{
+  "name": "web-monitor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "cross-env NODE_ENV=development && node index.js",
+    "prod": "cross-env NODE_ENV=production && node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^7.0.2",
+    "diffhook": "^0.1.2",
+    "dotenv": "^8.2.0",
+    "dotenv-flow": "^3.1.0",
+    "moment": "^2.24.0",
+    "nightmare": "^3.0.2",
+    "string-similarity": "^4.0.1",
+    "twilio": "^3.42.0"
+  },
+  "devDependencies": {
+    "@types/nightmare": "^2.10.4",
+    "prettier": "^2.0.4"
+  }
+}
