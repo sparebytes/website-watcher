@@ -16,19 +16,20 @@ const smsOptions = !smsEnabled
         .filter((m) => m),
     };
 
-const options = {
+const baseOptions = {
   ...smsOptions,
   incognito: getEnvBool("NIGHTMARE_INCOGNITO", true),
   nightmareOptions: {
     show: getEnvBool("NIGHTMARE_SHOW", false),
   },
-  url: getEnv("URL"),
-  title: getEnv("TITLE"),
-  interestingConfig: { selector: "._7w53", position: 0, regremove: [/\s/g] },
-  smsEnabled,
-  refreshRate: getEnvInt("REFRESH_RATE", 300000), //300000 is 5 min
+  refreshRate: getEnvInt("REFRESH_RATE"),
 };
 
-console.log("Options:", options);
+const options = {
+  ...baseOptions,
+  url: getEnv("URL"),
+  title: getEnv("TITLE"),
+  interestingConfig: { selector: "body", position: 0, regremove: [/\s/g] },
+};
 
 getMonitor(options).start();

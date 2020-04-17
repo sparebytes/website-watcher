@@ -3,19 +3,21 @@ const Nightmare = require("nightmare");
 const Twilio = require("twilio");
 
 module.exports = {
-  getMonitor({
-    url,
-    title,
-    numbersToMessage,
-    interestingConfig,
-    refreshRate,
-    smsEnabled,
-    fromNumber,
-    nightmareOptions,
-    incognito,
-    accountSid,
-    authToken,
-  }) {
+  getMonitor(options) {
+    let {
+      url,
+      title,
+      numbersToMessage,
+      interestingConfig,
+      refreshRate,
+      smsEnabled,
+      fromNumber,
+      nightmareOptions,
+      incognito,
+      accountSid,
+      authToken,
+    } = options;
+
     let timer = null;
     var lastResponse = null;
     nightmareOptions = { show: false, ...nightmareOptions };
@@ -129,7 +131,12 @@ module.exports = {
       }
     }
 
-    async function start() {
+    function start() {
+      console.log("Starting Monitor with options:", options);
+      return startAgain();
+    }
+
+    async function startAgain() {
       stop();
       try {
         await checkNow();
@@ -139,6 +146,7 @@ module.exports = {
     }
 
     function stop() {
+      console.log("Stopping Monitor: ", options.title, options.url);
       clearTimeout(timer);
     }
 
